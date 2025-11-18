@@ -1,13 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-import ApperIcon from "@/components/ApperIcon";
-import { formatFileSize, getFileIcon } from "@/utils/fileUtils";
 import { cn } from "@/utils/cn";
+import { formatFileSize, getFileIcon, isImageFile } from "@/utils/fileUtils";
+import ApperIcon from "@/components/ApperIcon";
 
 const FileCard = ({ 
   file, 
   onRemove, 
   onCopyUrl, 
+  onImagePreview,
   showProgress = false, 
   showUrl = false,
   className = "" 
@@ -44,12 +45,18 @@ const FileCard = ({
     >
       <div className="flex items-center space-x-4">
         {/* File thumbnail/icon */}
-        <div className="flex-shrink-0">
+<div className="flex-shrink-0">
           {file.thumbnail ? (
             <img
               src={file.thumbnail}
               alt={file.name}
-              className="w-12 h-12 rounded-lg object-cover border border-slate-200"
+              className={`w-12 h-12 rounded-lg object-cover border border-slate-200 ${
+                onImagePreview && isImageFile(file.type) 
+                  ? 'cursor-pointer hover:border-primary transition-colors' 
+                  : ''
+              }`}
+              onClick={() => onImagePreview && isImageFile(file.type) && onImagePreview(file)}
+              title={onImagePreview && isImageFile(file.type) ? 'Click to preview' : ''}
             />
           ) : (
             <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
@@ -129,7 +136,17 @@ const FileCard = ({
         </div>
 
         {/* Action buttons */}
-        <div className="flex items-center space-x-1">
+<div className="flex items-center space-x-1">
+          {/* Preview button for images */}
+          {onImagePreview && isImageFile(file.type) && (
+            <button
+              onClick={() => onImagePreview(file)}
+              className="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors"
+              title="Preview image"
+            >
+              <ApperIcon name="Eye" size={14} />
+            </button>
+          )}
           {showUrl && file.uploadedUrl && (
             <button
               onClick={() => onCopyUrl && onCopyUrl(file.uploadedUrl)}

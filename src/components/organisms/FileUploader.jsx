@@ -4,10 +4,11 @@ import { toast } from "react-toastify";
 import DropZone from "@/components/molecules/DropZone";
 import FileCard from "@/components/molecules/FileCard";
 import UploadProgress from "@/components/molecules/UploadProgress";
+import ImagePreviewModal from "@/components/molecules/ImagePreviewModal";
 import Button from "@/components/atoms/Button";
 import ApperIcon from "@/components/ApperIcon";
 import { uploadService } from "@/services/api/uploadService";
-import { generateThumbnail, validateFile } from "@/utils/fileUtils";
+import { generateThumbnail, validateFile, isImageFile } from "@/utils/fileUtils";
 import Loading from "@/components/ui/Loading";
 import ErrorView from "@/components/ui/ErrorView";
 import Empty from "@/components/ui/Empty";
@@ -19,6 +20,7 @@ const FileUploader = () => {
   const [completedUploads, setCompletedUploads] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [previewModal, setPreviewModal] = useState({ isOpen: false, file: null });
 
   // Load initial data
   useEffect(() => {
@@ -158,7 +160,18 @@ const FileUploader = () => {
       document.body.removeChild(textArea);
       toast.success("URL copied to clipboard!");
     }
-  }, []);
+}, []);
+
+  // Handle image preview
+  const handleImagePreview = (file) => {
+    if (isImageFile(file.type)) {
+      setPreviewModal({ isOpen: true, file });
+    }
+  };
+
+  const closePreviewModal = () => {
+    setPreviewModal({ isOpen: false, file: null });
+  };
 
   // Retry loading
   const retryLoad = () => {
@@ -287,11 +300,12 @@ const FileUploader = () => {
           ) : (
             <div className="space-y-3">
               <AnimatePresence>
-                {completedUploads.map((file) => (
+{completedUploads.map((file) => (
                   <FileCard
                     key={file.Id}
                     file={file}
                     onCopyUrl={copyToClipboard}
+                    onImagePreview={handleImagePreview}
                     showUrl={true}
                   />
                 ))}
@@ -326,6 +340,12 @@ const FileUploader = () => {
           </div>
         )}
       </div>
+{/* Image Preview Modal */}
+      <ImagePreviewModal
+        isOpen={previewModal.isOpen}
+        onClose={closePreviewModal}
+        file={previewModal.file}
+      />
     </div>
   );
 };
