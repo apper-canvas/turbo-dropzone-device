@@ -1,0 +1,50 @@
+[
+  {
+    "Id": 1,
+    "name": "summer-vacation-2023.jpg",
+    "size": 2458967,
+    "type": "image/jpeg",
+    "status": "completed",
+    "progress": 100,
+    "uploadedUrl": "https://example.com/files/summer-vacation-2023.jpg",
+    "thumbnail": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAQABADASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=",
+    "uploadedAt": 1703875200000,
+    "error": null
+  },
+  {
+    "Id": 2,
+    "name": "project-proposal.pdf",
+    "size": 1547382,
+    "type": "application/pdf",
+    "status": "completed",
+    "progress": 100,
+    "uploadedUrl": "https://example.com/files/project-proposal.pdf",
+    "thumbnail": null,
+    "uploadedAt": 1703871600000,
+    "error": null
+  },
+  {
+    "Id": 3,
+    "name": "presentation-slides.pptx",
+    "size": 8947261,
+    "type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "status": "completed",
+    "progress": 100,
+    "uploadedUrl": "https://example.com/files/presentation-slides.pptx",
+    "thumbnail": null,
+    "uploadedAt": 1703868000000,
+    "error": null
+  },
+  {
+    "Id": 4,
+    "name": "team-photo.png",
+    "size": 3247891,
+    "type": "image/png",
+    "status": "completed",
+    "progress": 100,
+    "uploadedUrl": "https://example.com/files/team-photo.png",
+    "thumbnail": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAANCSURBVDiNpZNLaJQBEMZ/896Nd2/cJG5MvLgmRYgXvUiF0iFFhAhBEPHgRUQQBA9e9CJBe",
+    "uploadedAt": 1703864400000,
+    "error": null
+  }
+]
